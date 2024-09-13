@@ -14,9 +14,10 @@ import Typography from '@mui/material/Typography';
 import WavingHandIcon from '@mui/icons-material/WavingHand';
 
 import { links } from '../../data/data';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useGlobalContext } from '../../context/auth-context';
 import { Button } from '@mui/material';
+import LogoText from '../common/logoText';
 
 const drawerWidth = 340;
 
@@ -25,6 +26,9 @@ function MainHeader(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
+  const location = useLocation();
+
+
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
@@ -32,17 +36,14 @@ function MainHeader(props) {
   const { user,logout } = useGlobalContext();
   const navigate = useNavigate()
 
-  React.useEffect(()=>{
- 
-    const {logged} = JSON.parse(localStorage.getItem('user'))
-     if(!logged) {
-        navigate('/')
-     }
-  },[user])
+  const handleLogout = ()=>{
+    logout()
+    navigate('/') 
+  }
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center',padding:"20px" }}>
       <Typography textAlign={"left"} variant="h6" sx={{ my: 2 }}>
-        MUI
+         Todos
       </Typography>
       <Divider />
       <List>
@@ -57,7 +58,7 @@ function MainHeader(props) {
       {user && (
             <>
               <Typography gutterBottom sx={{display:"flex",gap:1}}>Welcome {user.name} <WavingHandIcon color='black'/> </Typography>
-              <Button onClick={logout} sx={{ marginTop:3,display:"block" }} variant='contained' color="error">Logout </Button>
+              <Button onClick={handleLogout} sx={{ marginTop:3,display:"block" }} variant='contained' color="error">Logout </Button>
             </>
             )
             }
@@ -81,13 +82,7 @@ function MainHeader(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-          >
-            MUIs
-          </Typography>
+          <LogoText  size={"40"}/>
           <Box sx={{ display: { xs: 'none', sm: 'flex' }, gap: { sm: 4 },alignItems:"center" }}>
             {!user && links.map((item) => (
               <NavLink className={'nav__link'} to={item.path} key={item.id} >
@@ -97,7 +92,7 @@ function MainHeader(props) {
 
             {user && (<>
               <Typography sx={{ margin:0 ,display:"flex",gap:1}}>Welcome {user.name} <WavingHandIcon color='black'/> </Typography>
-              <Button onClick={logout} variant='contained' color="error">Logout </Button>
+              <Button onClick={handleLogout} variant='contained' color="error">Logout </Button>
             </>
             )
             }

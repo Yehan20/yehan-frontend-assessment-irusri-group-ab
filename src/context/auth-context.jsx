@@ -22,7 +22,9 @@ const AuthProvider = ({ children }) => {
       let matchingUser = JSON.parse(localStorage.getItem('user'))
       console.log(matchingUser.password, password)
       if (password === matchingUser.password) {
-        setUser(matchingUser)
+        setUser({...matchingUser,logged:true})
+        localStorage.setItem('user', JSON.stringify({...matchingUser,logged:true}))
+
         setLoggedOut(false)
         return
       }
@@ -41,7 +43,12 @@ const AuthProvider = ({ children }) => {
     if (localStorage.getItem('user')) {
       // check if password match
       setLoading(false);
-      setUser(JSON.parse(localStorage.getItem('user')));
+      
+      let loggedUser = JSON.parse(localStorage.getItem('user'))
+      if(loggedUser.logged){
+        setUser(loggedUser);
+      }
+  
       setLoggedOut(false)
      
     }

@@ -3,3 +3,10 @@ export const links = [
      {id:2,name:'Login',path:'/login'},
      {id:3,name:'Register',path:'/register'}
  ];
+
+export const tableRows = [
+    "Title",
+    "Description",
+    "Status",
+    "Actions",
+ ]
