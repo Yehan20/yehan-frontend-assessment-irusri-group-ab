@@ -45,7 +45,7 @@ const Home = () => {
 
       <Grid sx={{ margin: '80px 0px' }} container spacing={4}>
         <Grid size={{ xs: 12 }}>
-          <Box sx={{ p: 3, borderRadius: 2, boxShadow: 1, textAlign: 'center' }}>
+          <Box  sx={{ p: 4, borderRadius: 2, boxShadow: 0, textAlign: 'center',background:'#f7f7f7' }}>
             <Typography variant='h4' sx={{ marginBottom: "40px" }}>
               Get Started
             </Typography>

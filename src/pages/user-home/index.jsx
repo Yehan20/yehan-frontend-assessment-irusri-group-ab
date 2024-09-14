@@ -1,19 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
   Button,
-  Modal,
   Box,
   TextField,
-  Switch,
   Snackbar,
   Alert,
   Typography,
-  ButtonGroup,
   Grid2,
   CircularProgress,
 } from '@mui/material';
@@ -114,10 +106,21 @@ function TodoList() {
       todo.id === id ? { ...todo, completed: !todo.completed } : todo
     )
 
+
     setTodos(
       updatedTodos
     );
     updateLocalStorage(updatedTodos)
+    
+    // check if all todoes are complete
+    let isAllComplete = updatedTodos.filter((updatedTodo)=>!updatedTodo.completed)
+   console.log(isAllComplete)
+   
+    if(isAllComplete.length === 0) {
+      toggleSnackBar('Congratulations All of your Todos are Done',true,'')
+       return 
+    } 
+
     toggleSnackBar('Todo completed successfully',true,'')
 
   };
@@ -170,7 +173,7 @@ function TodoList() {
   );
 
   return (
-    <Box>
+
       <Grid2 container>
         <Grid2 size={{ xs: 12 }}>
 
@@ -181,6 +184,8 @@ function TodoList() {
           label="Search Todos"
           variant="outlined"
           fullWidth
+          rows={1}
+            size="small"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
@@ -195,7 +200,7 @@ function TodoList() {
                Add Todo
             </Button>
 
-           {(todos && todos.length >0) &&  <Button sx={{ margin: "20px 0" }} variant="contained" color="primary"
+           {(todos && todos.length >0) &&  <Button sx={{ margin: "20px 0" }} variant="contained" color="secondary"
                onClick={clearAllTodos}>
               Clear All
             </Button>}
@@ -206,6 +211,8 @@ function TodoList() {
           {(todos && todos.length > 0 ) && 
             <DynamicTable todos={filteredTodos} handleToggleCompletion={handleToggleCompletion} handleEdit={handleEdit} handleDeleteTodo={handleDeleteTodo} />
           }
+
+          { filteredTodos.length<=0  && <Typography sx={{ marginTop:'10px' }}>No Results found </Typography> }
 
           {!todos &&   <CircularProgress color="black" />}
 
@@ -227,7 +234,7 @@ function TodoList() {
 
         </Grid2>
       </Grid2>
-    </Box>
+  
 
   );
 }

@@ -36,8 +36,9 @@ const Register = () => {
   }, [user]);
 
   return (
-    <Box sx={{ padding: "30px 0" }}>
+    <React.Fragment>
       <Typography
+         sx={{ sm:{padding: "30px 0"} }}
         variant="h3"
         textAlign={"center"}
         fontWeight={600}
@@ -45,7 +46,7 @@ const Register = () => {
       >
         Register
       </Typography>
-      <Grid container  spacing={{ xs: 2, sm: 4, md: 10 }} sx={{ marginTop: "40px" }}>
+      <Grid container  spacing={{ xs: 2, sm: 4, md: 10 }} sx={{ marginTop: "40px", paddingBottom:"40px" }}>
         {" "}
         {/* Container with spacing */}
         <Grid size={{ xs: 12, sm: 6 }}>
@@ -53,7 +54,7 @@ const Register = () => {
             src={listImage}
             alt={"list image"}
             loading="lazy"
-            height={"400"}
+            height={"450"}
             width={"100%"}
           />
         </Grid>
@@ -162,6 +163,7 @@ const Register = () => {
                 variant="contained"
                 fullWidth
                 type="submit"
+                sx={{ padding:"10px 0" }}
               >
                 Submit
               </Button>
@@ -175,7 +177,7 @@ const Register = () => {
           </Box>
         </Grid>
       </Grid>
-    </Box>
+    </React.Fragment>
   );
 };
 

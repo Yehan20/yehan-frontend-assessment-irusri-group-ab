@@ -19,7 +19,7 @@ const FeaturesCard = ({ title, image, text }) => {
 
     return (
 
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 345,margin:'0 auto' }}>
             <CardActionArea>
 
                 {loading ? (
