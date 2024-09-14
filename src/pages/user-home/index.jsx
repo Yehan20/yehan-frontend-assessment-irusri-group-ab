@@ -62,7 +62,7 @@ function TodoList() {
     console.log(user)
     setTodos(user.todos)
     if (user.logged) {
-      toggleSnackBar(`Welcome back ${user.name}`,true,'')
+      toggleSnackBar(`Welcome  ${user.name}`,true,'')
     }
   }, [])
  

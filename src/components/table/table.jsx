@@ -10,9 +10,9 @@ const DynamicTable = ({ todos, handleToggleCompletion, handleDeleteTodo, handleE
   return (
     <Table>
       <TableHead>
-        <TableRow>
+        <TableRow  sx={{ display: { xs: 'block', sm: 'table-row' } }}>
           {tableRows.map((tableRow, index) => {
-            return <TableCell key={index}>{tableRow}</TableCell>
+            return <TableCell  sx={{ display: { xs: 'block', sm: 'table-cell' } }} key={index}>{tableRow}</TableCell>
           })}
 
         </TableRow>
@@ -20,11 +20,11 @@ const DynamicTable = ({ todos, handleToggleCompletion, handleDeleteTodo, handleE
 
       <TableBody>
         {todos.map((todo) => (
-          <TableRow key={todo.id} style={{ backgroundColor: todo.completed ? '#f7f7f7' : 'white' }}>
-            <TableCell>{todo.id}</TableCell>
-            <TableCell>{todo.title}</TableCell>
-            <TableCell>{todo.description}</TableCell>
-            <TableCell>
+          <TableRow sx={{ display: { xs: 'block', sm: 'table-row' } }} key={todo.id} style={{ backgroundColor: todo.completed ? '#f7f7f7' : 'white' }}>
+            <TableCell sx={{ display: { xs: 'block', sm: 'table-cell' } }}>{todo.id}</TableCell>
+            <TableCell sx={{ display: { xs: 'block', sm: 'table-cell' } }}>{todo.title}</TableCell>
+            <TableCell sx={{ display: { xs: 'block', sm: 'table-cell' } }}>{todo.description}</TableCell>
+            <TableCell sx={{ display: { xs: 'block', sm: 'table-cell' } }}>
               <Switch
                 checked={todo.completed}
                 onChange={() => handleToggleCompletion(todo.id)}
@@ -35,7 +35,7 @@ const DynamicTable = ({ todos, handleToggleCompletion, handleDeleteTodo, handleE
                 {todo.completed ?'Done' :'Pending'}
               </Typography>
             </TableCell>
-            <TableCell>
+            <TableCell  sx={{ display: { xs: 'block', sm: 'table-cell' } }}>
               <Button
                 sx={{ marginRight: "5px", marginBottom: '5px' }}
                 variant="contained"

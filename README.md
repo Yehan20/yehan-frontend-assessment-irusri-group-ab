@@ -2,14 +2,13 @@
 
 A Todo app that allows you to update add and view todoes and authenticates users you can login and test it out.
 
-Link to the application: 
-
+Link to the application: https://main--yehan-frontend-assesment-todo.netlify.app/
 ## Concepts and Areas Convered
 
-- Set Up Development Enivrnoment using React Vite , Intergrate Mui library
+- Set Up Development  Environment using React Vite , Intergrate Mui library
 - Use Mui Design Conecpts and it's theme
 - Developed Protected Routes in React Router for Authentication
-- Used Help of Context Api to Help in authentication and Autherization
+- Used Help of Context Api to Help in authentication and authorization 
 - Configured and user formik and yup for validations and bscrypt for hashing
 - Usage of local storage to save the data
 - various array methods to manage todos , save , search , view , 
@@ -38,7 +37,7 @@ Link to the application:
 
 ## Get started
 
-Firstly you would need to install npm you can install it  https://nodejs.org/en/download/package-manager/current from this site by choosing your system , if you have node js then you do not need to install 
+Firstly you would need to install npm you can install it from  https://nodejs.org/en/download/package-manager/current from this site by choosing your system requirements , if you have node js then you do not need to install, how ever if your version is outdated it will good to upgrade it. 
 
 Open a terminal and clone this repo:
 
