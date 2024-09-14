@@ -2,14 +2,15 @@
 
 A Todo app that allows you to update add and view todoes and authenticates users you can login and test it out.
 
-Link to the application: https://main--yehan-frontend-assesment-todo.netlify.app/
-## Concepts and Areas Convered
+Link to the application: https://yehan-frontend-assessment-todo.netlify.app/
 
-- Set Up Development  Environment using React Vite , Intergrate Mui library
-- Use Mui Design Conecpts and it's theme
+## Concepts and Areas Covered
+
+- Set up development  environment using React Vite , Intergrate Mui library
+- Used Mui Design Concepts and it's theme
 - Developed Protected Routes in React Router for Authentication
-- Used Help of Context Api to Help in authentication and authorization 
-- Configured and user formik and yup for validations and bscrypt for hashing
+- Used help of context Api to Help in authentication and authorization 
+- Configured and used formik and yup for validations and bscrypt for hashing
 - Usage of local storage to save the data
 - various array methods to manage todos , save , search , view , 
 - Component-Based Architecture: Utilizes React's component structure.
@@ -26,11 +27,12 @@ Link to the application: https://main--yehan-frontend-assesment-todo.netlify.app
 - Fully Mobile Resposive Web App 
 
 
+
 ## Tools and technologies used
 - React
 - Material UI
 - Vite
-- React + Hooks + Context
+- React + Hooks + Context Api
 - React Router
 - Formik + Yup
 - bcrypt
