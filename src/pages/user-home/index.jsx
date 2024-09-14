@@ -75,7 +75,7 @@ function TodoList() {
     }
 
     const newTodo = {
-      id: Date.now(),
+      id: todos.length + 1,
       title: todoObject.newTodoTitle,
       description: todoObject.newTodoDescription,
       completed: false,
@@ -105,7 +105,8 @@ function TodoList() {
     let updatedTodos = todos.map((todo) =>
       todo.id === id ? { ...todo, completed: !todo.completed } : todo
     )
-
+   
+    let inComplete =  !(updatedTodos.find(todo=>todo.id === id).completed);
 
     setTodos(
       updatedTodos
@@ -120,6 +121,11 @@ function TodoList() {
       toggleSnackBar('Congratulations All of your Todos are Done',true,'')
        return 
     } 
+
+    if(inComplete){
+        toggleSnackBar('Todo Marked Incomplete Again',true,'error')
+      return 
+    }
 
     toggleSnackBar('Todo completed successfully',true,'')
 
@@ -212,9 +218,9 @@ function TodoList() {
             <DynamicTable todos={filteredTodos} handleToggleCompletion={handleToggleCompletion} handleEdit={handleEdit} handleDeleteTodo={handleDeleteTodo} />
           }
 
-          { filteredTodos.length<=0  && <Typography sx={{ marginTop:'10px' }}>No Results found </Typography> }
-
-          {!todos &&   <CircularProgress color="black" />}
+          { (filteredTodos.length<=0 && searchQuery)  && <Typography sx={{ marginTop:'10px' }}>No Results found </Typography> }
+{/* 
+          {!todos &&   <CircularProgress color="black" />} */}
 
 
           <CustomModel type={'Add'} openModel={openAddModal} handleClose={() => setOpenAddModal(false)}
@@ -224,8 +230,8 @@ function TodoList() {
           <CustomModel type={'Update'} openModel={openEditModal} handleClose={() => setOpenEditModal(false)}
             handleTodoChange={handleInput} todoObject={editTodoObject} handleClick={handleEditTodo} />
 
-          <Snackbar variant="filled" anchorOrigin={{ vertical: 'top', horizontal: 'center' }} open={openSnackbar} autoHideDuration={2000} onClose={() => setOpenSnackbar(false)}>
-            <Alert variant='filled' severity={snackbarError ? snackbarError : 'success'}
+          <Snackbar bodyStyle={{ height: 200, width: 200, flexGrow: 0 }}  anchorOrigin={{ vertical: 'top', horizontal: 'center' }} open={openSnackbar} autoHideDuration={3000} onClose={() => setOpenSnackbar(false)}>
+            <Alert variant='filled'   severity={snackbarError ? snackbarError : 'success'}
               onClose={() => setOpenSnackbar(false)}>
               {snackbarMessage}
             </Alert>

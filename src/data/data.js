@@ -5,6 +5,7 @@ export const links = [
  ];
 
 export const tableRows = [
+    "Id",
     "Title",
     "Description",
     "Status",

@@ -81,6 +81,10 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     getUser();
   }, []);
+  
+  useEffect(()=>{
+    if(loggedOut) setLoggedOut(false)
+  },[loggedOut])
 
   return (
     <AuthContext.Provider
@@ -92,7 +96,6 @@ const AuthProvider = ({ children }) => {
         alert,
         setAlert,
         loading,
-        logout,
         loggedOut,
       }}
     >

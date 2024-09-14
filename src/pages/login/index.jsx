@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { LoginvalidationSchema } from "../../utils/validationScehma";
 
 const Register = () => {
-  const { login, user, alert, setAlert } = useGlobalContext();
+  const { login, user, alert, setAlert,loading } = useGlobalContext();
   const navigate = useNavigate();
 
   const formik = useFormik({
@@ -34,6 +34,7 @@ const Register = () => {
     }
   }, [user]);
 
+
   // clear form
   useEffect(() => {
     if (alert) {
@@ -43,6 +44,8 @@ const Register = () => {
       }, 1000);
     }
   }, [alert]);
+
+
 
   return (
     <React.Fragment >
@@ -56,7 +59,7 @@ const Register = () => {
         Login
       </Typography>
       <Grid container  spacing={{ xs: 2, sm: 4, md: 10 }} sx={{ marginTop: "40px",paddingBottom:"40px" }}>
-        {" "}
+ 
         {/* Container with spacing */}
         <Grid size={{ xs: 12, sm: 6 }}>
           <img
