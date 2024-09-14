@@ -4,24 +4,27 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(""); // Replace with actual user state
+  const [user, setUser] = useState("");
   const [alert, setAlert] = useState("");
   const [loggedOut, setLoggedOut] = useState(false);
   const [loading, setLoading] = useState(true);
-
+ 
+  // used to updated local storage as an helper function
   const updateLocalSotrage = (user) => {
     localStorage.setItem(
       "user",
       JSON.stringify(user),
     );
   }
-
+  
+  // used to hash password for proteciton
   const hashPassword = (password) => {
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(password, salt);
     return hashedPassword;
   }
-
+ 
+  // authenticates user
   const login = (userData) => {
     setAlert("");
 
@@ -46,6 +49,7 @@ const AuthProvider = ({ children }) => {
     setAlert({ type: "error", message: "Wrong Email or Password" });
   };
 
+  // checks local storage to get user
   const getUser = () => {
     if (localStorage.getItem("user")) {
       // check if password match
@@ -60,28 +64,32 @@ const AuthProvider = ({ children }) => {
     }
     setLoading(false);
   };
-
+  
+  // 
   const register = (user) => {
 
-    const hashedPassword = hashPassword(user.password);
+    const hashedPassword = hashPassword(user.password); // make this hashed
     const { confirmPassword, ...rest } = user; // remove confirm password
     const modifiedUser = { ...rest, password: hashedPassword, logged: true, todos: [] };
     updateLocalSotrage(modifiedUser)
     setUser(modifiedUser);
     setLoggedOut(false);
   };
-
+  
+  // updates the logout and updates the local storage i considered having multiple users so implemented a loging property in object
   const logout = () => {
     const user = JSON.parse(localStorage.getItem("user"));
     setUser("");
     updateLocalSotrage({ ...user, logged: false });
     setLoggedOut(true);
   };
-
+  
+  // check user when app loads
   useEffect(() => {
     getUser();
   }, []);
   
+  // reponsible for manging logout messages
   useEffect(()=>{
     if(loggedOut) setLoggedOut(false)
   },[loggedOut])
@@ -105,7 +113,7 @@ const AuthProvider = ({ children }) => {
 };
 
 const useGlobalContext = () => {
-  return useContext(AuthContext);
+  return useContext(AuthContext); // custom funciton so we dont need to call contexts agian
 };
 
 export { useGlobalContext, AuthContext };

@@ -2,6 +2,8 @@ import React from 'react'
 import { Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 
+// Custom Message with a link used in login and sign up 
+
 const Prompt = ({ Messagetext, linkText, url }) => {
     return (
         <Typography variant="body1" >

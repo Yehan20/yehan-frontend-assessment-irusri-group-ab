@@ -1,4 +1,4 @@
-import * as React from 'react';
+import  React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,11 +14,12 @@ import Typography from '@mui/material/Typography';
 import WavingHandIcon from '@mui/icons-material/WavingHand';
 
 import { links } from '../../data/data';
-import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useGlobalContext } from '../../context/auth-context';
 import { Button } from '@mui/material';
 import LogoText from '../common/logoText';
 import theme from '../../theme/theme';
+
 
 const drawerWidth = 340;
 
@@ -110,7 +111,7 @@ function MainHeader(props) {
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true, 
           }}
           sx={{
             display: { xs: 'block', sm: 'none' },

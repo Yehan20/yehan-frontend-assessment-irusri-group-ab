@@ -28,9 +28,9 @@ const theme = createTheme({
                   },
 
                         '&.Mui-disabled': {
-                  backgroundColor: '#ccc', // Disabled state background color
+                  backgroundColor: '#ccc', 
                   opacity:0.6,
-                  color: '#1c201f', // Disabled state text color
+                  color: '#1c201f', 
                 },
                   
               },

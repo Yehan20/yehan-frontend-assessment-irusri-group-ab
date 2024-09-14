@@ -1,5 +1,5 @@
-import { Box, Typography } from '@mui/material'
 import React from 'react'
+import { Box, Typography } from '@mui/material'
 import LogoText from '../common/logoText'
 
 const Footer = () => {

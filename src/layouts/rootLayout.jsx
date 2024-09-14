@@ -1,6 +1,5 @@
 import React from 'react'
-import { NavLink, Outlet } from 'react-router-dom'
-import { useGlobalContext } from '../context/auth-context'
+import { Outlet } from 'react-router-dom'
 import MainHeader from '../components/header/main-header'
 import Footer from '../components/footer/footer'
 import { Container } from '@mui/material'

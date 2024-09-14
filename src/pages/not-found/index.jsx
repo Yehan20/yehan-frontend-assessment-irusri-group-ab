@@ -1,5 +1,5 @@
-import { Grid2, Typography } from '@mui/material'
 import React from 'react'
+import { Grid2, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 import HomeIcon from '@mui/icons-material/Home';
 import theme from '../../theme/theme';

@@ -10,7 +10,7 @@ const CustomModel = ({ type, openModel, handleClose, handleTodoChange, todoObjec
         <React.Fragment>
             {
               type === 'Add' ? <Modal sx={{ display: "flex", justifyContent: "center" }} open={openModel} onClose={handleClose}>
-                    <Box sx={{ position: 'absolute', top: 50, width: 400, bgcolor: 'background.paper', boxShadow: 24, p: 4 }}>
+                    <Box component="form"  sx={{ position: 'absolute', top: 50,  width: { xs: 350, sm: 500 }, bgcolor: 'background.paper', boxShadow: 24, p: 4 }}>
                         <Typography sx={{ marginBottom:"20px" }}>Add a Todo</Typography>
                         <TextField
                             label="Title"
@@ -35,7 +35,7 @@ const CustomModel = ({ type, openModel, handleClose, handleTodoChange, todoObjec
                     </Box>
                 </Modal> :
                  <Modal  sx={{ display: "flex", justifyContent: "center" }} open={openModel} onClose={handleClose}>
-                    <Box sx={{ position: 'absolute', top: 50, width: 400, bgcolor: 'background.paper', boxShadow: 24, p: 4 }}>
+                    <Box sx={{ position: 'absolute', top: 50,  width: { xs: 350, sm: 500 }, bgcolor: 'background.paper', boxShadow: 24, p: 4 }}>
                         <Typography sx={{ marginBottom:"20px" }}>Edit a Todo</Typography>
 
                         <TextField
