@@ -15,7 +15,7 @@ const DynamicTable = ({todos,handleToggleCompletion,handleDeleteTodo,handleEdit}
     </TableHead>
 
     <TableBody>
-      {todos && todos.map((todo) => (
+      {todos.map((todo) => (
         <TableRow key={todo.id} style={{ backgroundColor: todo.completed ? '#f2f2f2' : 'white' }}>
           <TableCell>{todo.title}</TableCell>
           <TableCell>{todo.description}</TableCell>

@@ -14,7 +14,7 @@ import Typography from '@mui/material/Typography';
 import WavingHandIcon from '@mui/icons-material/WavingHand';
 
 import { links } from '../../data/data';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useGlobalContext } from '../../context/auth-context';
 import { Button } from '@mui/material';
 import LogoText from '../common/logoText';
@@ -82,7 +82,8 @@ function MainHeader(props) {
           >
             <MenuIcon />
           </IconButton>
-          <LogoText  size={"40"}/>
+    
+          <LogoText hasLink={true}  size={"40"}/>
           <Box sx={{ display: { xs: 'none', sm: 'flex' }, gap: { sm: 4 },alignItems:"center" }}>
             {!user && links.map((item) => (
               <NavLink className={'nav__link'} to={item.path} key={item.id} >
@@ -114,8 +115,11 @@ function MainHeader(props) {
           }}
         >
           {drawer}
+        
         </Drawer>
+    
       </nav>
+     
 
     </Box>
   );

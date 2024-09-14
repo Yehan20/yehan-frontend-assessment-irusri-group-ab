@@ -16,7 +16,7 @@ const CustomModel = ({ type, openModel, handleClose, handleTodoChange, todoObjec
                             label="Title"
                             name='newTodoTitle'
                             value={todoObject.newTodoTitle}
-                            onChange={handleTodoChange}
+                            onChange={(e)=>handleTodoChange("ADD",e)}
                             fullWidth
                         />
                         <br /> <br />
@@ -24,7 +24,7 @@ const CustomModel = ({ type, openModel, handleClose, handleTodoChange, todoObjec
                             label="Description"
                             name='newTodoDescription'
                             value={todoObject.newTodoDescription}
-                            onChange={handleTodoChange}
+                            onChange={(e)=>handleTodoChange("ADD",e)}
                             fullWidth
                             multiline
                         />
@@ -41,7 +41,7 @@ const CustomModel = ({ type, openModel, handleClose, handleTodoChange, todoObjec
                         <TextField
                             label="Title"
                             value={todoObject.newEditTodoTitle}
-                            onChange={handleTodoChange}
+                            onChange={(e)=>handleTodoChange("UPDATE",e)}
                             fullWidth
                             name="newEditTodoTitle"
                         />
@@ -49,7 +49,7 @@ const CustomModel = ({ type, openModel, handleClose, handleTodoChange, todoObjec
                         <TextField
                             label="Description"
                             value={todoObject.newEditTodoDescription}
-                            onChange={handleTodoChange}
+                            onChange={(e)=>handleTodoChange("UPDATE",e)}
                             fullWidth
                             multiline
                             name="newEditTodoDescription"

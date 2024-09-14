@@ -1,10 +1,12 @@
 import { Box, Typography } from '@mui/material'
 import React from 'react'
+import LogoText from '../common/logoText'
 
 const Footer = () => {
   return (
     <Box sx={{ backgroundColor: (theme) => theme.palette.primary.main,padding:"20px",marginTop:"auto" }}>
-       <Typography align='center'> Task Tracker </Typography>
+       <Typography variant='div' sx={{ textAlign:'center',display:'flex',alignItems:'center', flexDirection: { xs: 'column', sm: 'row' }}}> 
+        <LogoText size={'30'} />  Designed and developed by Yehan Nilanga </Typography>
     </Box>
   )
 }
