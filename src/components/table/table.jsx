@@ -1,6 +1,10 @@
-import { Button, Table, TableBody, TableCell, TableRow, TableHead, Switch, Typography } from '@mui/material'
 import React from 'react'
+import { Button, Table, TableBody, TableCell, TableRow, TableHead, Switch, Typography } from '@mui/material'
 import { tableRows } from '../../data/data'
+
+/*
+  Responsible for printng the todos has propss passed from parents to peform todo's operations
+*/
 
 const DynamicTable = ({ todos, handleToggleCompletion, handleDeleteTodo, handleEdit }) => {
   return (

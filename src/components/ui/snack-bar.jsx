@@ -3,16 +3,16 @@ import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import { useGlobalContext } from '../../context/auth-context';
 
+/*
+  once logged out this notifies user with help from our context
+*/ 
 
 const CustomSnackBar = () => {
     
     const {loggedOut} = useGlobalContext();
     const [open, setOpen] = React.useState(loggedOut);
 
-
-
     // useEffect(()=>{
-
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
             return;
@@ -23,7 +23,7 @@ const CustomSnackBar = () => {
 
     return (
         <div>
-            {/* <Button onClick={handleClick}>Open Snackbar</Button> */}
+
             <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
                 <Alert
                     onClose={handleClose}

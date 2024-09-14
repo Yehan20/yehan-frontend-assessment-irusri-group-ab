@@ -7,13 +7,16 @@ import {
   Alert,
   Typography,
   Grid2,
-  CircularProgress,
+
 } from '@mui/material';
 import { useGlobalContext } from '../../context/auth-context';
 import CustomModel from '../../components/common/alertModel';
 import DynamicTable from '../../components/table/table';
 
-
+/*
+  Contains all operations of dodos starting from fetching it from a user to local storage to updating searching and clearning
+  with the global context and snackbar notifies user actions
+*/
 
 function TodoList() {
   const { user } = useGlobalContext();
@@ -22,7 +25,7 @@ function TodoList() {
   const [todos, setTodos] = useState([]);
   const [openAddModal, setOpenAddModal] = useState(false);
 
-
+  
   const [todoObject, setTodoObject] = useState({ newTodoTitle: '', newTodoDescription: '' })
   const [editTodoObject, setEditTodoObject] = useState({ newEditTodoTitle: '', newEditTodoDescription: '', id: '' })
 
@@ -33,6 +36,7 @@ function TodoList() {
   const [snackbarError, setSnackBarError] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   
+  // update and add logi
   const handleInput = (action,event) =>{
     const name = event.target.name;
     const value = event.target.value
@@ -46,12 +50,14 @@ function TodoList() {
     }  
   }
   
+  // customized snack bar
   const toggleSnackBar = (message,status,error)=>{
     setSnackbarMessage(message)
     setOpenSnackbar(status);
     setSnackBarError(error)
   }
-
+  
+  // user logs in or register welcome message
   useEffect(() => {
     console.log(user)
     setTodos(user.todos)
@@ -59,14 +65,15 @@ function TodoList() {
       toggleSnackBar(`Welcome back ${user.name}`,true,'')
     }
   }, [])
-
+ 
+  // helper function that updates the todos to the local storage
   const updateLocalStorage = (todos) => {
     let newUser = { ...user, todos }
     localStorage.setItem('user', JSON.stringify(newUser))
   }
 
 
-
+   // Adding todo checks for validations
   const handleAddTodo = () => {
     
     if (!todoObject.newTodoTitle || !todoObject.newTodoDescription) {
@@ -90,7 +97,8 @@ function TodoList() {
     toggleSnackBar('Todo added successfully',true,'')
 
   };
-
+ 
+  // Remove the todo
   const handleDeleteTodo = (id) => {
     toggleSnackBar('Todo deleted successfully',true,'')
 
@@ -98,7 +106,8 @@ function TodoList() {
     updateLocalStorage(todos.filter((todo) => todo.id !== id));
 
   };
-
+  
+  // Complete or Mark Uncomplete todo
   const handleToggleCompletion = (id) => {
     setSnackBarError('')
 
@@ -130,7 +139,8 @@ function TodoList() {
     toggleSnackBar('Todo completed successfully',true,'')
 
   };
-
+  
+  // Edit todo check for validations first
   const handleEdit = (id) => {
     const modifiedTodo = todos.filter((todo) => todo.id === id)[0];
     setOpenEditModal(true)
@@ -163,7 +173,8 @@ function TodoList() {
     setSnackBarError('')
     setOpenEditModal(false);
   };
-
+  
+  // Clear todos
   const clearAllTodos = () =>{
      setTodos([]);
      updateLocalStorage([]);
@@ -173,7 +184,7 @@ function TodoList() {
 
 
 
-  // Filter todos based on the search query we pre
+  // Filter todos based on the search make sure applicatin doesnt
   const filteredTodos = todos.filter(todo =>
     todo.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -190,6 +201,7 @@ function TodoList() {
           label="Search Todos"
           variant="outlined"
           fullWidth
+          sx={{ margin:"10px 0" }}
           rows={1}
             size="small"
           value={searchQuery}
@@ -230,7 +242,7 @@ function TodoList() {
           <CustomModel type={'Update'} openModel={openEditModal} handleClose={() => setOpenEditModal(false)}
             handleTodoChange={handleInput} todoObject={editTodoObject} handleClick={handleEditTodo} />
 
-          <Snackbar bodyStyle={{ height: 200, width: 200, flexGrow: 0 }}  anchorOrigin={{ vertical: 'top', horizontal: 'center' }} open={openSnackbar} autoHideDuration={3000} onClose={() => setOpenSnackbar(false)}>
+          <Snackbar style={{ height: 200, width: 350, flexGrow: 0 }}  anchorOrigin={{ vertical: 'top', horizontal: 'center' }} open={openSnackbar} autoHideDuration={3000} onClose={() => setOpenSnackbar(false)}>
             <Alert variant='filled'   severity={snackbarError ? snackbarError : 'success'}
               onClose={() => setOpenSnackbar(false)}>
               {snackbarMessage}
