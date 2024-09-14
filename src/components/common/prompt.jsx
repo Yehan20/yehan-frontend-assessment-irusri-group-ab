@@ -5,8 +5,9 @@ import { Link } from 'react-router-dom'
 const Prompt = ({ Messagetext, linkText, url }) => {
     return (
         <Typography variant="body1" >
-            {Messagetext}
-            <Link to={url} color="primary">
+            {Messagetext} 
+
+            <Link style={{ textDecoration:'none' }} to={url} color="primary">
                 {linkText}
             </Link>
 

@@ -14,6 +14,9 @@ const theme = createTheme({
       primary: {
         main: "#f8b145",
       },
+      text: {
+        primary: '#1c201f', // Custom text color if needed
+      },
     },
 });
 

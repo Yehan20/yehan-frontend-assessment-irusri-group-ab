@@ -1,7 +1,8 @@
 import React from 'react'
 import { Typography } from '@mui/material'
+import { Link } from 'react-router-dom'
 
-const LogoText = ({size}) => {
+const LogoText = ({size,hasLink}) => {
   return (
      <Typography 
        sx={{ 
@@ -9,13 +10,17 @@ const LogoText = ({size}) => {
         fontWeight:"400",
         fontStyle: "normal", 
         fontSize:`${size}px`,
-        flexGrow: 1, display: { xs: 'none', sm: 'block' } 
+        
+        flexGrow: 1, display: {  sm: 'block' }, textAlign:{xs:'right',sm:'left'} ,
+        '& a':{
+           textDecoration:'none',
+           color:"#000"        }
       }}
       component="div"
     
           
 
-    >Todos</Typography>
+    >{hasLink?<Link to={'/'}>Todos</Link>:'Todos'}</Typography>
   )
 }
 

@@ -15,6 +15,7 @@ import {
   Typography,
   ButtonGroup,
   Grid2,
+  CircularProgress,
 } from '@mui/material';
 import { useGlobalContext } from '../../context/auth-context';
 import CustomModel from '../../components/common/alertModel';
@@ -38,29 +39,32 @@ function TodoList() {
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [snackbarError, setSnackBarError] = useState('');
-
-
-  const handleTodoChange = (event) => {
+  const [searchQuery, setSearchQuery] = useState('');
+  
+  const handleInput = (action,event) =>{
     const name = event.target.name;
     const value = event.target.value
+    if(action === 'ADD') {
+      setTodoObject((prev) => ({ ...prev, [name]: value }))
 
-    setTodoObject((prev) => ({ ...prev, [name]: value }))
+    } 
+    if(action === 'UPDATE') {
+      setEditTodoObject((prev) => ({ ...prev, [name]: value }))
+
+    }  
   }
-
-  const handleTodoEditChange = (event) => {
-    const name = event.target.name;
-    const value = event.target.value
-
-    setEditTodoObject((prev) => ({ ...prev, [name]: value }))
+  
+  const toggleSnackBar = (message,status,error)=>{
+    setSnackbarMessage(message)
+    setOpenSnackbar(status);
+    setSnackBarError(error)
   }
-
 
   useEffect(() => {
+    console.log(user)
     setTodos(user.todos)
     if (user.logged) {
-      setOpenSnackbar(true)
-      setSnackbarMessage(`Welcome back ${user.name}`)
-
+      toggleSnackBar(`Welcome back ${user.name}`,true,'')
     }
   }, [])
 
@@ -72,32 +76,32 @@ function TodoList() {
 
 
   const handleAddTodo = () => {
+    
     if (!todoObject.newTodoTitle || !todoObject.newTodoDescription) {
-      setSnackBarError('error')
-      setSnackbarMessage('fill all feilds')
-      setOpenSnackbar(true);
+      toggleSnackBar('Fill all feilds',true,'error')
       return;
     }
+
     const newTodo = {
-      id: todos.length + 1,
+      id: Date.now(),
       title: todoObject.newTodoTitle,
       description: todoObject.newTodoDescription,
       completed: false,
     };
+    console.log(newTodo,todos);
+    
     setTodos([...todos, newTodo]);
 
     updateLocalStorage([...todos, newTodo]);
     setOpenAddModal(false);
-    setSnackBarError('')
     setTodoObject({ newTodoTitle: '', newTodoDescription: '' })
-    setOpenSnackbar(true);
-    setSnackbarMessage('Todo added successfully');
+    toggleSnackBar('Todo added successfully',true,'')
+
   };
 
   const handleDeleteTodo = (id) => {
-    setOpenSnackbar(true);
-    setSnackBarError('')
-    setSnackbarMessage('Todo Deleted successfully');
+    toggleSnackBar('Todo deleted successfully',true,'')
+
     setTodos(todos.filter((todo) => todo.id !== id));
     updateLocalStorage(todos.filter((todo) => todo.id !== id));
 
@@ -114,8 +118,8 @@ function TodoList() {
       updatedTodos
     );
     updateLocalStorage(updatedTodos)
-    setOpenSnackbar(true);
-    setSnackbarMessage('Todo Completed successfully');
+    toggleSnackBar('Todo completed successfully',true,'')
+
   };
 
   const handleEdit = (id) => {
@@ -127,9 +131,8 @@ function TodoList() {
   const handleEditTodo = () => {
 
     if (!editTodoObject.newEditTodoDescription || !editTodoObject.newEditTodoTitle) {
-      setSnackBarError('error')
-      setSnackbarMessage('fill all feilds')
-      setOpenSnackbar(true);
+      toggleSnackBar('Fill all feilds',true,'error')
+
       return;
     }
     let editedTodos = todos.map((todo) =>
@@ -145,8 +148,8 @@ function TodoList() {
     );
 
     updateLocalStorage(editedTodos)
-    setOpenSnackbar(true);
-    setSnackbarMessage('Todo Edited successfully');
+    toggleSnackBar('Todo Edited successfully',true,'')
+
     setEditTodoObject({ newEditTodoTitle: '', id: '', newEditTodoDescription: '' })
     setSnackBarError('')
     setOpenEditModal(false);
@@ -155,7 +158,16 @@ function TodoList() {
   const clearAllTodos = () =>{
      setTodos([]);
      updateLocalStorage([]);
+     toggleSnackBar('Todos Cleared',true,'')
+
   }
+
+
+
+  // Filter todos based on the search query we pre
+  const filteredTodos = todos.filter(todo =>
+    todo.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <Box>
@@ -164,6 +176,15 @@ function TodoList() {
 
           <Typography gutterBottom variant='h5' textAlign={"start"} fontWeight={600} component={'h1'}>Todo List</Typography>
 
+
+          <TextField
+          label="Search Todos"
+          variant="outlined"
+          fullWidth
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+
           <Box
 
             aria-label="Disabled button group"
@@ -171,10 +192,10 @@ function TodoList() {
           >
             <Button sx={{ margin: "20px 0" }} variant="contained" color="primary"
               onClick={() => setOpenAddModal(true)}>
-              {todos.length <= 0 ? 'No Todos added Click to add your first' : 'Add Todo'}
+               Add Todo
             </Button>
 
-           {todos.length >0 &&  <Button sx={{ margin: "20px 0" }} variant="contained" color="primary"
+           {(todos && todos.length >0) &&  <Button sx={{ margin: "20px 0" }} variant="contained" color="primary"
                onClick={clearAllTodos}>
               Clear All
             </Button>}
@@ -182,17 +203,19 @@ function TodoList() {
 
 
 
-          {todos.length > 0 && 
-            <DynamicTable todos={todos} handleToggleCompletion={handleToggleCompletion} handleEdit={handleEdit} handleDeleteTodo={handleDeleteTodo} />
+          {(todos && todos.length > 0 ) && 
+            <DynamicTable todos={filteredTodos} handleToggleCompletion={handleToggleCompletion} handleEdit={handleEdit} handleDeleteTodo={handleDeleteTodo} />
           }
+
+          {!todos &&   <CircularProgress color="black" />}
 
 
           <CustomModel type={'Add'} openModel={openAddModal} handleClose={() => setOpenAddModal(false)}
-            handleTodoChange={handleTodoChange} todoObject={todoObject} handleClick={handleAddTodo}
+            handleTodoChange={handleInput} todoObject={todoObject} handleClick={handleAddTodo}
           />
 
           <CustomModel type={'Update'} openModel={openEditModal} handleClose={() => setOpenEditModal(false)}
-            handleTodoChange={handleTodoEditChange} todoObject={editTodoObject} handleClick={handleEditTodo} />
+            handleTodoChange={handleInput} todoObject={editTodoObject} handleClick={handleEditTodo} />
 
           <Snackbar variant="filled" anchorOrigin={{ vertical: 'top', horizontal: 'center' }} open={openSnackbar} autoHideDuration={2000} onClose={() => setOpenSnackbar(false)}>
             <Alert variant='filled' severity={snackbarError ? snackbarError : 'success'}
