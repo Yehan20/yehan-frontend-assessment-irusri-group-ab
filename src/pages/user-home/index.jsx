@@ -82,7 +82,7 @@ function TodoList() {
     }
 
     const newTodo = {
-      id: todos.length + 1,
+      id: Date.now(),
       title: todoObject.newTodoTitle,
       description: todoObject.newTodoDescription,
       completed: false,
