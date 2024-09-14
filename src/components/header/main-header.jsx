@@ -1,4 +1,4 @@
-import  React from 'react';
+import React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -28,44 +28,52 @@ function MainHeader(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
- 
+
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
 
-  const { user,logout } = useGlobalContext();
+  const { user, logout } = useGlobalContext();
   const navigate = useNavigate()
 
-  const handleLogout = ()=>{
+  const handleLogout = () => {
     logout()
-    navigate('/') 
+    navigate('/')
   }
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center',padding:"20px" }}>
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', padding: "20px" }}>
       <Typography textAlign={"left"} variant="h6" sx={{ my: 2 }}>
-         Todos
+        Todos
       </Typography>
       <Divider />
       <List>
         {!user && links.map((item) => (
           <ListItem key={item.id} disablePadding>
             <NavLink className={'custom__hover'} to={item.path} >
-              <ListItemText sx={{ textDecoration:'none',color:theme.palette.secondary.main ,'&:hover':{
-                 fontWeight:800,
-                 
-              }}} primary={item.name} />
+              <ListItemText sx={{
+                textDecoration: 'none', color: theme.palette.secondary.main, '&:hover': {
+                  fontWeight: 800,
+
+                }
+              }} primary={item.name} />
             </NavLink>
           </ListItem>
         ))}
       </List>
       {user && (
-            <>
-              <Typography gutterBottom sx={{display:"flex",gap:1}}>Welcome {user.name} <WavingHandIcon color='black'/> </Typography>
-              <Button onClick={handleLogout} sx={{ marginTop:3,display:"block" }} variant='contained' color="secondary">Logout </Button>
-            </>
-            )
-            }
+        <>
+          <Typography gutterBottom sx={{ display: "flex", gap: 1 }}>Welcome {user.name} <WavingHandIcon color='black' /> </Typography>
+          <Typography align='left'>
+            <NavLink style={{ color: 'black' }} to='/todo-list-user' className={'custom__hover'} >
+              Todos
+            </NavLink>
+          </Typography>
+
+          <Button onClick={handleLogout} sx={{ marginTop: 3, display: "block" }} variant='contained' color="secondary">Logout </Button>
+        </>
+      )
+      }
 
     </Box>
   );
@@ -86,9 +94,9 @@ function MainHeader(props) {
           >
             <MenuIcon />
           </IconButton>
-    
-          <LogoText hasLink={true}  size={"40"}/>
-          <Box sx={{ display: { xs: 'none', sm: 'flex' }, gap: { sm: 4 },alignItems:"center" }}>
+
+          <LogoText hasLink={true} size={"40"} />
+          <Box sx={{ display: { xs: 'none', sm: 'flex' }, gap: { sm: 4 }, alignItems: "center" }}>
             {!user && links.map((item) => (
               <NavLink className={'nav__link'} to={item.path} key={item.id} >
                 {item.name}
@@ -96,7 +104,10 @@ function MainHeader(props) {
             ))}
 
             {user && (<>
-              <Typography sx={{ margin:0 ,display:"flex",gap:1}}>Welcome {user.name} <WavingHandIcon color='black'/> </Typography>
+              <Typography sx={{ margin: 0, display: "flex", gap: 1 }}>Welcome {user.name} <WavingHandIcon color='black' /> </Typography>
+              <NavLink style={{ color: 'black' }} to='/todo-list-user' className={'custom__hover'} >
+                Todos
+              </NavLink>
               <Button onClick={handleLogout} variant='contained' color="secondary">Logout </Button>
             </>
             )
@@ -111,7 +122,7 @@ function MainHeader(props) {
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, 
+            keepMounted: true,
           }}
           sx={{
             display: { xs: 'block', sm: 'none' },
@@ -119,11 +130,11 @@ function MainHeader(props) {
           }}
         >
           {drawer}
-        
+
         </Drawer>
-    
+
       </nav>
-     
+
 
     </Box>
   );
