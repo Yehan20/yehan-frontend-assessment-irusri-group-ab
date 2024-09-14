@@ -91,7 +91,7 @@ const AuthProvider = ({ children }) => {
   
   // reponsible for manging logout messages
   useEffect(()=>{
-    if(loggedOut) setLoggedOut(false)
+    if(loggedOut){ setLoggedOut(false)}
   },[loggedOut])
 
   return (

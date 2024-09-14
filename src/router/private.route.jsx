@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {  Navigate } from 'react-router-dom';
 import { useGlobalContext } from '../context/auth-context';
 
+// Protecting the List route 
 
 const PrivateRoute = ({ children}) => {
   const {user,loading} = useGlobalContext();

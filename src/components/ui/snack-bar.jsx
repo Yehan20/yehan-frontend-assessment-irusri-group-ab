@@ -12,7 +12,7 @@ const CustomSnackBar = () => {
     const {loggedOut} = useGlobalContext();
     const [open, setOpen] = React.useState(loggedOut);
 
-    // useEffect(()=>{
+ 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
             return;
