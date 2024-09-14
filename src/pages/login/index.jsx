@@ -45,16 +45,17 @@ const Register = () => {
   }, [alert]);
 
   return (
-    <Box sx={{ padding: "30px 0" }}>
+    <React.Fragment >
       <Typography
         variant="h3"
         textAlign={"center"}
         fontWeight={600}
         component={"h1"}
+        sx={{ sm:{padding: "30px 0"} }}
       >
         Login
       </Typography>
-      <Grid container  spacing={{ xs: 2, sm: 4, md: 10 }} sx={{ marginTop: "40px" }}>
+      <Grid container  spacing={{ xs: 2, sm: 4, md: 10 }} sx={{ marginTop: "40px",paddingBottom:"40px" }}>
         {" "}
         {/* Container with spacing */}
         <Grid size={{ xs: 12, sm: 6 }}>
@@ -128,6 +129,7 @@ const Register = () => {
                 variant="contained"
                 fullWidth
                 type="submit"
+                sx={{ padding:"10px 0" }}
               >
                 Login
               </Button>
@@ -145,7 +147,7 @@ const Register = () => {
           </Box>
         </Grid>
       </Grid>
-    </Box>
+    </React.Fragment>
   );
 };
 
