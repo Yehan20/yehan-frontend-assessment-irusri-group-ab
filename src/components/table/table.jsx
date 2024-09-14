@@ -17,13 +17,14 @@ const DynamicTable = ({ todos, handleToggleCompletion, handleDeleteTodo, handleE
       <TableBody>
         {todos.map((todo) => (
           <TableRow key={todo.id} style={{ backgroundColor: todo.completed ? '#f7f7f7' : 'white' }}>
+            <TableCell>{todo.id}</TableCell>
             <TableCell>{todo.title}</TableCell>
             <TableCell>{todo.description}</TableCell>
             <TableCell>
               <Switch
                 checked={todo.completed}
                 onChange={() => handleToggleCompletion(todo.id)}
-                disabled={todo.completed}
+                // disabled={todo.completed}
                 color='primary'
               />
               <Typography  variant="body2" sx={{ marginLeft: 1 ,display:'inline-block'}}>

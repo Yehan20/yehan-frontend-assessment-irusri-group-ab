@@ -11,7 +11,7 @@ const CustomModel = ({ type, openModel, handleClose, handleTodoChange, todoObjec
             {
               type === 'Add' ? <Modal sx={{ display: "flex", justifyContent: "center" }} open={openModel} onClose={handleClose}>
                     <Box sx={{ position: 'absolute', top: 50, width: 400, bgcolor: 'background.paper', boxShadow: 24, p: 4 }}>
-                        <Typography gutterBottom>Add a Todo</Typography>
+                        <Typography sx={{ marginBottom:"20px" }}>Add a Todo</Typography>
                         <TextField
                             label="Title"
                             name='newTodoTitle'
@@ -34,9 +34,9 @@ const CustomModel = ({ type, openModel, handleClose, handleTodoChange, todoObjec
                         </Button>
                     </Box>
                 </Modal> :
-                 <Modal sx={{ display: "flex", justifyContent: "center" }} open={openModel} onClose={handleClose}>
+                 <Modal  sx={{ display: "flex", justifyContent: "center" }} open={openModel} onClose={handleClose}>
                     <Box sx={{ position: 'absolute', top: 50, width: 400, bgcolor: 'background.paper', boxShadow: 24, p: 4 }}>
-                        <Typography gutterBottom>Edit a Todo</Typography>
+                        <Typography sx={{ marginBottom:"20px" }}>Edit a Todo</Typography>
 
                         <TextField
                             label="Title"
