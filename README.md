@@ -19,6 +19,7 @@ Link to the application: https://yehan-frontend-assessment-todo.netlify.app/
 ## Features
 
 - CRUD functionalities of Todo's
+- Display different messages for different todo operaitons ex if all todos complete you get congratulations.
 - User authentication and authorization using Bcrypt and formik and yup
 - Notifies users authentication and actions by alerts
 - Sorting by various fields (full name, age, and date)

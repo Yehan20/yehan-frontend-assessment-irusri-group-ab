@@ -21,7 +21,7 @@ const DynamicTable = ({ todos, handleToggleCompletion, handleDeleteTodo, handleE
       <TableBody>
         {todos.map((todo) => (
           <TableRow sx={{ display: { xs: 'block', sm: 'table-row' } }} key={todo.id} style={{ backgroundColor: todo.completed ? '#f7f7f7' : 'white' }}>
-            <TableCell sx={{ display: { xs: 'block', sm: 'table-cell' } }}>{todo.id}</TableCell>
+        
             <TableCell sx={{ display: { xs: 'block', sm: 'table-cell' } }}>{todo.title}</TableCell>
             <TableCell sx={{ display: { xs: 'block', sm: 'table-cell' } }}>{todo.description}</TableCell>
             <TableCell sx={{ display: { xs: 'block', sm: 'table-cell' } }}>
