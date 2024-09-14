@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { Box, Grid2 as Grid, Typography } from "@mui/material";
 import listImage from "../../assets/img/list.jpg";
+import PeakImg from "../../assets/img/peak.gif";
 import Prompt from "../../components/common/prompt";
 import { useGlobalContext } from "../../context/auth-context";
 import AlertMessage from "../../components/common/alert";
@@ -63,7 +64,7 @@ const Register = () => {
         {/* Container with spacing */}
         <Grid size={{ xs: 12, sm: 6 }}>
           <img
-            src={listImage}
+            src={PeakImg}
             alt={"list image"}
             loading="lazy"
             height={"450"}

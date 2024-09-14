@@ -65,3 +65,7 @@ a{
    transform: scale(1, 1);
 }
 
+.error__link:hover {
+    opacity: 0.7;
+}
+
